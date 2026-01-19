@@ -1,21 +1,21 @@
 ---
 layout: post
-title: Dashboard Analisis Bisnis E-Commerce (SSDC 2025)
-description: Dashboard interaktif berbasis Streamlit untuk menganalisis performa penjualan, efisiensi logistik, dan sentimen pelanggan guna mendukung pengambilan keputusan strategis.
+title: E-Commerce Business Insight (SSDC 2025)
+description: Finalis Sebelas Maret Statistics Fair 2025. Dashboard interaktif untuk menganalisis preferensi pembeli, kualitas produk, dan efisiensi logistik menggunakan Brazilian E-Commerce Dataset.
 skills:
   - Python
   - Streamlit
-  - Pandas
   - Plotly Express
-  - Data Cleaning
-main-image: /assets/projects/ssdc-dashboard/main-preview.jpg
+  - Pandas
+  - Data Storytelling
+main-image: /assets/projects/ssdc-dashboard/cover.jpg
 ---
 
-## Deskripsi Proyek
+## 🏆 Tentang Proyek
 
-Proyek ini dikembangkan untuk kompetisi **Sebelas Maret Statistics Dashboard Competition (SSDC) 2025**. Dashboard ini bertujuan untuk mengolah data e-commerce yang kompleks menjadi wawasan bisnis yang dapat ditindaklanjuti (actionable insights).
+Proyek ini merupakan karya tim **"Mohon Bantuannya"** yang disusun untuk kompetisi **Sebelas Maret Statistics Dashboard Competition (SSDC) 2025**. 
 
-Aplikasi ini membantu pemangku kepentingan dalam memantau KPI utama seperti total penjualan, kepuasan pelanggan, dan performa pengiriman secara *real-time*.
+Tujuan utama dari dashboard ini adalah membantu pemangku kepentingan (stakeholder) perusahaan e-commerce dalam mengambil keputusan strategis berbasis data. Analisis difokuskan pada tiga pilar utama: **Preferensi Pembeli, Kualitas Produk, dan Kinerja Pengiriman**.
 
 ### Tautan Penting
 
@@ -24,119 +24,93 @@ Aplikasi ini membantu pemangku kepentingan dalam memantau KPI utama seperti tota
 
 ---
 
-## Tampilan Antarmuka
+## 📊 Metodologi & Data
 
-Berikut adalah tampilan visualisasi data dan fitur interaktif pada dashboard.
+Analisis ini menggunakan **Brazilian E-Commerce Public Dataset by Olist** (2016-2018) yang terdiri dari 11 tabel terelasi (Pesanan, Pelanggan, Geolokasi, Ulasan, dll).
 
-{% include image-gallery.html images="/assets/projects/ssdc-dashboard/screenshot1.jpg, /assets/projects/ssdc-dashboard/screenshot2.jpg" height="300" %}
+**Tech Stack yang Digunakan:**
 
-<br>
-
-## Fitur Utama
-
-1. **Filter Data Dinamis**: Memungkinkan pengguna menyaring data berdasarkan rentang tanggal, kategori produk, dan status pesanan.
-2. **Analisis Kualitas Produk**: Mengidentifikasi kategori produk dengan penjualan tertinggi dan ulasan terendah untuk perbaikan kualitas.
-3. **Peta Geografis Pelanggan**: Visualisasi persebaran pelanggan untuk strategi ekspansi pasar.
-4. **Analisis Logistik**: Membandingkan estimasi waktu pengiriman dengan durasi aktual.
+* **Streamlit:** Framework utama untuk membangun antarmuka web interaktif
+* **Pandas:** Digunakan untuk *data wrangling* dan penggabungan (merging) dataset yang kompleks
+* **Plotly Express:** Digunakan untuk visualisasi interaktif seperti *Scatter Mapbox* (Peta) dan *Bar Chart* dinamis
 
 ---
 
-## Sorotan Teknis (Code Snippets)
+## 💡 Key Insights (Temuan Utama)
 
-Berikut adalah beberapa bagian kode kunci yang digunakan dalam pembangunan dashboard ini.
+Berdasarkan analisis visual pada dashboard, berikut adalah temuan kuncinya:
 
-### 1. Integrasi Data (Data Merging)
+### 1. Konsentrasi Pendapatan & Masalah Kualitas
 
-Tantangan utama dalam proyek ini adalah menyatukan 9 dataset berbeda (Order, Customer, Review, Product, dll). Berikut adalah fungsi yang digunakan untuk menggabungkan dataset tersebut menjadi satu DataFrame terpusat:
+Pendapatan perusahaan sangat bergantung pada kategori *Bed Bath Table* (cama_mesa_banho) dan *Health Beauty* (beleza_saude). Namun, volume penjualan tinggi ini tidak berbanding lurus dengan kepuasan pelanggan.
+
+* **Masalah:** Ditemukan banyak ulasan negatif pada kategori terlaris.
+* **Akar Masalah:** Ketidaksesuaian barang dengan deskripsi/foto, kualitas material rendah, dan kerusakan saat pengiriman
+
+### 2. Efisiensi Logistik vs Durasi Aktual
+
+Meskipun mayoritas pesanan tiba **lebih cepat dari estimasi** sistem, durasi pengiriman aktual rata-rata masih memakan waktu sekitar **12 hari**. Ini menjadi titik lemah yang berpotensi mengurangi kepuasan pelanggan.
+
+### 3. Konsentrasi Pasar Geografis
+
+Visualisasi peta (*Scatter Mapbox*) menunjukkan pasar sangat terkonsentrasi di wilayah tenggara Brazil, khususnya provinsi **São Paulo (SP)**. Ini menandakan ketergantungan tinggi pada satu wilayah, namun juga peluang ekspansi ke area lain.
+
+---
+
+## 📸 Fitur Dashboard & Visualisasi
+
+Berikut adalah beberapa visualisasi kunci yang disajikan dalam dashboard ini:
+
+### a. Peta Persebaran Pelanggan (Scatter Mapbox)
+
+Visualisasi interaktif yang memetakan lokasi pelanggan berdasarkan koordinat latitude/longitude untuk melihat densitas pasar secara *real-time*.
+
+{% include image-gallery.html images="/assets/projects/ssdc-dashboard/map-preview.jpg" height="400" %}
+
+### b. Analisis Ulasan & Sentimen
+
+Grafik batang yang membandingkan total penjualan dengan rata-rata skor ulasan untuk mengidentifikasi produk yang "Laris tapi Mengecewakan".
+
+{% include image-gallery.html images="/assets/projects/ssdc-dashboard/chart-review.jpg" height="300" %}
+
+---
+
+## 💻 Sorotan Kode (Code Snippets)
+
+Salah satu tantangan terbesar adalah menggabungkan 9 dataset berbeda menjadi satu kesatuan data yang utuh. Berikut adalah implementasi fungsi `load_all_data` menggunakan Pandas:
 
 ```python
-# Fungsi untuk memuat dan menggabungkan seluruh dataset
 @st.cache_data
 def load_all_data():
-    # ... (code loading csv) ...
-    
-    # Merge datasets secara bertahap
-    df_merged = loaded_data['orders'].copy()
+    # Load dataset csv...
+    # Proses merging bertahap untuk mempertahankan integritas data
     merge_steps = [
         (loaded_data['order_items'], 'order_id'),
         (loaded_data['products'], 'product_id'),
-        (loaded_data['product_translation'], 'product_category_name'),
         (loaded_data['order_reviews'], 'order_id'),
         (loaded_data['customers'], 'customer_id'),
-        (loaded_data['sellers'], 'seller_id'),
-        (loaded_data['order_payments'], 'order_id')
+        # ... (tabel lainnya)
     ]
     
     for df_to_merge, on_key in merge_steps:
         df_merged = pd.merge(df_merged, df_to_merge, on=on_key, how='left')
     
-    # Feature Engineering: Menghitung durasi pengiriman
-    df_merged['delivery_duration_days'] = (
-        df_merged['order_delivered_customer_date'] - df_merged['order_purchase_timestamp']
+    # Feature Engineering: Menghitung Delivery Performance
+    # (Selisih waktu estimasi vs aktual)
+    df_merged['delivery_performance_days'] = (
+        df_merged['order_estimated_delivery_date'] - df_merged['order_delivered_customer_date']
     ).dt.days
 
-    return df_merged, loaded_data['geolocation']
-```
-
-### 2. Visualisasi Interaktif dengan Plotly
-
-Menggunakan plotly.express untuk membuat grafik batang yang responsif guna menampilkan kategori produk dengan penjualan tertinggi.
-
-```python
-st.markdown("##### Top 10 Kategori Produk Berdasarkan Total Penjualan")
-
-# Mengelompokkan data berdasarkan kategori dan menjumlahkan harga
-top_categories = df_filtered.groupby('product_category_name_english')['price'].sum().nlargest(10).reset_index()
-
-# Membuat Bar Chart Horizontal
-fig = px.bar(
-    top_categories, 
-    x='price', 
-    y='product_category_name_english',
-    labels={'price': 'Total Penjualan (R$)', 'product_category_name_english': 'Kategori Produk'},
-    orientation='h', 
-    color='price', 
-    color_continuous_scale=px.colors.sequential.Viridis
-)
-
-fig.update_layout(yaxis={'categoryorder':'total ascending'})
-st.plotly_chart(fig, use_container_width=True)
-```
-
-### 3. Logika Filter Sidebar
-
-Implementasi sidebar Streamlit untuk memfilter data secara dinamis berdasarkan input pengguna.
-
-```python
-# Widget Input Tanggal
-date_range = st.sidebar.date_input(
-    "Rentang Tanggal Pembelian:",
-    value=(min_date, max_date),
-    min_value=min_date,
-    max_value=max_date
-)
-
-# Widget Multiselect Kategori
-selected_categories = st.sidebar.multiselect(
-    "Pilih Kategori Produk:", options=all_categories, default=all_categories
-)
-
-# Filtering Dataframe
-if len(date_range) == 2:
-    start_date, end_date = pd.to_datetime(date_range[0]), pd.to_datetime(date_range[1])
-    df_filtered = df_main[
-        (df_main['order_purchase_timestamp'] >= start_date) & 
-        (df_main['order_purchase_timestamp'] <= end_date) &
-        (df_main['product_category_name_english'].isin(selected_categories))
-    ].copy()
+    return df_merged
 ```
 
 ---
 
-## Pembelajaran & Pengalaman
+## 🎯 Rekomendasi Strategis
 
-Melalui proyek ini, saya memperoleh pengalaman dalam:
-- Menangani dataset besar dan kompleks dengan multiple relationships
-- Membuat dashboard interaktif yang user-friendly
-- Feature engineering dan data preprocessing
-- Presentasi data untuk business decision making
+Berdasarkan insight di atas, kami merekomendasikan:
+
+1. **Improvement Kualitas Produk:** Lebih ketat dalam quality control untuk kategori terlaris, khususnya *Bed Bath Table* dan *Health Beauty*.
+2. **Optimasi Logistik:** Bermitra dengan *logistics partner* yang lebih cepat untuk mengurangi durasi pengiriman rata-rata menjadi < 10 hari.
+3. **Ekspansi Geografis:** Menargetkan wilayah di luar São Paulo untuk mengurangi konsentrasi pasar dan meningkatkan revenue.
+4. **Monitoring Real-Time:** Menggunakan dashboard ini untuk memantau KPI harian dan membuat keputusan operasional dengan cepat.
