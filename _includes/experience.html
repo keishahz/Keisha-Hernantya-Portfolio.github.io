@@ -1,5 +1,5 @@
 <section id="experience" class="experience-section">
-    <h2>Pengalaman</h2>
+    <h2>Pengalaman & Sertifikasi</h2>
     
     <div class="carousel-wrapper">
         <button class="carousel-arrow carousel-arrow-left" onclick="scrollCarousel('experience-container', -300)">
@@ -72,7 +72,7 @@
                 </div>
             </div>
 
-            <div class="experience-card" onclick="openModal('/assets/images/certificates/placeholder.jpg', 'Ketua Komisi II BPM Hima Data Sains', 'Legislatif Mahasiswa', 'Memimpin komisi yang membidangi aspirasi mahasiswa. Mengelola program kerja legislatif dan melakukan advokasi isu-isu kemahasiswaan.')">
+             <div class="experience-card" onclick="openModal('/assets/images/certificates/placeholder.jpg', 'Ketua Komisi II BPM Hima Data Sains', 'Legislatif Mahasiswa', 'Memimpin komisi yang membidangi aspirasi mahasiswa. Mengelola program kerja legislatif dan melakukan advokasi isu-isu kemahasiswaan.')">
                 <img src="/assets/images/certificates/placeholder.jpg" alt="Ketua Komisi II BPM Hima Data Sains">
                 <div class="card-overlay">
                     <h3 class="card-title">Ketua Komisi II BPM Hima Data Sains</h3>
@@ -126,40 +126,67 @@
     </div>
 
     <div id="certModal" class="modal">
-        <span class="close-modal" onclick="closeModal()">&times;</span>
         <div class="modal-content">
-            <img class="modal-image" id="img01">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            
+            <div class="modal-image-container">
+                <img class="modal-image" id="img01">
+            </div>
+
             <div class="modal-text">
-                <h3 id="modalTitle"></h3>
-                <h4 id="modalOrg"></h4>
-                <hr>
-                <p id="modalDesc"></p>
+                <h3 id="modalTitle">Judul Sertifikat</h3>
+                <h4 id="modalOrg">Nama Organisasi</h4>
+                <p id="modalDesc">Deskripsi lengkap kegiatan...</p>
             </div>
         </div>
     </div>
 
     <script>
+        // Buka Modal
         function openModal(imageSrc, title, org, desc) {
             var modal = document.getElementById("certModal");
             var modalImg = document.getElementById("img01");
             var modalTitle = document.getElementById("modalTitle");
             var modalOrg = document.getElementById("modalOrg");
             var modalDesc = document.getElementById("modalDesc");
-            modal.style.display = "block";
+
+            // Isi konten
             modalImg.src = imageSrc;
             modalTitle.innerText = title;
             modalOrg.innerText = org;
             modalDesc.innerText = desc;
+
+            // Tampilkan dengan efek fade-in
+            modal.style.display = "flex"; 
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+            
+            // Matikan scroll halaman belakang biar fokus
+            document.body.style.overflow = "hidden";
         }
+
+        // Tutup Modal
         function closeModal() {
-            document.getElementById("certModal").style.display = "none";
+            var modal = document.getElementById("certModal");
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = "none";
+            }, 300); // Tunggu animasi selesai
+
+            // Nyalakan scroll halaman lagi
+            document.body.style.overflow = "auto";
         }
+
+        // Tutup kalau klik di area gelap (luar kotak putih)
         window.onclick = function(event) {
             var modal = document.getElementById("certModal");
             if (event.target == modal) {
-                modal.style.display = "none";
+                closeModal();
             }
         }
+
+        // Slider Scroll
         function scrollCarousel(containerId, scrollAmount) {
             const container = document.getElementById(containerId);
             container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
