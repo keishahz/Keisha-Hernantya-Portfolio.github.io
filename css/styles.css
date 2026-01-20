@@ -1161,120 +1161,81 @@ footer p {
     .card-overlay .card-org {
         font-size: 0.75em;
     }
+}  
 
-    /* =========================================
-   MODAL / LIGHTBOX STYLING (THE CORRECT WAY)
+  /* =========================================
+   MODAL / POP-UP STYLING (FIXED CENTER)
    ========================================= */
 
-/* 1. Latar Belakang Gelap (Overlay) */
+/* Latar Belakang Gelap (Overlay) */
 .modal {
-    display: none; /* Default sembunyi */
-    position: fixed;
-    z-index: 100000; /* Paling atas di atas segalanya */
+    display: none; /* Hidden by default */
+    position: fixed; 
+    z-index: 100000; /* Layer paling atas */
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden; /* Tidak ada scroll ganda */
-    background-color: rgba(0, 0, 0, 0); /* Transparan dulu untuk animasi */
-    transition: background-color 0.3s ease;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.85); /* Hitam transparan 85% */
+    backdrop-filter: blur(5px); /* Efek blur di belakang */
     
-    /* Flexbox untuk menengahkan kotak putih */
+    /* Flexbox Magic untuk Menengahkan Kotak */
     align-items: center;
     justify-content: center;
 }
 
-/* Class tambahan saat modal muncul (untuk animasi) */
-.modal.show {
-    background-color: rgba(0, 0, 0, 0.85); /* Gelap banget biar fokus */
-    backdrop-filter: blur(5px); /* Efek blur keren di background */
-}
-
-/* 2. Kotak Putih (Container Utama) */
+/* Kotak Putih (Wadah Konten) */
 .modal-content {
-    background-color: #ffffff;
+    background-color: #fff;
     width: 90%;
-    max-width: 600px; /* Lebar maksimal biar ga kegedean di laptop */
-    max-height: 90vh; /* Maksimal tinggi 90% layar */
-    border-radius: 16px; /* Sudut melengkung halus */
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); /* Bayangan elegan */
+    max-width: 600px; /* Lebar maksimal */
+    max-height: 90vh; /* Tinggi maksimal 90% layar */
+    border-radius: 12px;
+    overflow: hidden; /* Rapikan sudut */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     position: relative;
-    overflow-y: auto; /* Bisa scroll kalau konten kepanjangan */
-    opacity: 0;
-    transform: scale(0.9); /* Mulai agak kecil */
-    transition: all 0.3s ease-out;
     display: flex;
     flex-direction: column;
+    animation: zoomIn 0.3s ease; /* Animasi muncul */
 }
 
-/* Animasi saat muncul */
-.modal.show .modal-content {
-    opacity: 1;
-    transform: scale(1); /* Jadi ukuran normal */
-}
-
-/* 3. Tombol Close (X) */
-.close-modal {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    color: #fff; /* Putih karena di atas gambar */
-    background: rgba(0,0,0,0.5); /* Background bulat transparan */
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 32px;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 10;
-    transition: 0.2s;
-}
-
-.close-modal:hover {
-    background: rgba(0,0,0,0.8);
-    transform: rotate(90deg);
-}
-
-/* 4. Area Gambar (Atas) */
+/* Area Gambar (Atas) */
 .modal-image-container {
     width: 100%;
-    background-color: #f0f0f0; /* Placeholder warna abu */
+    background-color: #f8f9fa;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0;
 }
 
 .modal-image {
     width: 100%;
     height: auto;
-    max-height: 60vh; /* Batasi tinggi gambar biar teks tetep kelihatan */
-    object-fit: contain; /* Gambar pas di kotak, ga kepotong */
+    max-height: 50vh; /* Batasi tinggi gambar biar teks kebagian tempat */
+    object-fit: contain; /* Gambar pas full, ga kepotong */
     display: block;
 }
 
-/* 5. Area Teks (Bawah) */
+/* Area Teks (Bawah) */
 .modal-text {
-    padding: 24px 30px;
-    text-align: left;
+    padding: 25px;
+    overflow-y: auto; /* Teks bisa discroll kalau kepanjangan */
     background: #fff;
-    border-top: 1px solid #eee;
 }
 
 .modal-text h3 {
-    margin: 0 0 5px 0;
-    font-size: 1.4rem;
+    margin: 0 0 8px 0;
+    font-size: 1.5rem;
     font-weight: 700;
     color: #1a1a1a;
-    line-height: 1.3;
 }
 
 .modal-text h4 {
     margin: 0 0 15px 0;
     font-size: 1rem;
-    color: #007bff; /* Warna biru untuk organisasi */
     font-weight: 600;
+    color: #0056b3; /* Warna biru profesional */
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -1286,22 +1247,42 @@ footer p {
     margin: 0;
 }
 
-/* Responsif untuk HP (Layar Kecil) */
+/* Tombol Close (X) */
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #fff;
+    background: rgba(0,0,0,0.4);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 36px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    z-index: 10;
+}
+
+.close-modal:hover {
+    background: rgba(0,0,0,0.8);
+    transform: rotate(90deg);
+}
+
+/* Animasi Muncul */
+@keyframes zoomIn {
+    from {transform: scale(0.8); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+}
+
+/* Responsif HP */
 @media screen and (max-width: 600px) {
     .modal-content {
         width: 95%;
-        max-height: 85vh;
-        margin: auto;
     }
-    
-    .modal-text {
-        padding: 20px;
-    }
-    
     .modal-text h3 {
         font-size: 1.2rem;
     }
 }
-  
-}
-
