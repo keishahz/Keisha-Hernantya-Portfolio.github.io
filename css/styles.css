@@ -1199,22 +1199,24 @@ footer p {
     animation: zoomIn 0.3s ease; /* Animasi muncul */
 }
 
-/* Area Gambar (Atas) */
 .modal-image-container {
     width: 100%;
-    background-color: #f8f9fa;
+    background-color: #ffffff; /* Ganti jadi Putih biar nyatu sama bawah */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0;
+    padding: 25px 25px 0 25px; 
 }
 
+/* Tambahan: Biar gambarnya punya sudut melengkung sedikit (opsional, biar cantik) */
 .modal-image {
     width: 100%;
     height: auto;
-    max-height: 50vh; /* Batasi tinggi gambar biar teks kebagian tempat */
-    object-fit: contain; /* Gambar pas full, ga kepotong */
+    max-height: 50vh; 
+    object-fit: contain; 
     display: block;
+    border-radius: 8px; /* Kasih lengkungan dikit di gambarnya */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Kasih bayangan tipis biar gambarnya 'pop-up' */
 }
 
 /* Area Teks (Bawah) */
