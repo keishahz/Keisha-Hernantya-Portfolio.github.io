@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Dashboard Visualisasi Data Iklim
-description: Dashboard interaktif berbasis Streamlit untuk memantau korelasi antara transisi energi terbarukan, emisi CO2, dan dampak bencana di Pasifik.
+description: Aplikasi web interaktif untuk menganalisis korelasi antara transisi energi, emisi karbon, dan dampak bencana di Pasifik.
 skills:
   - Python
   - Streamlit
@@ -11,12 +11,20 @@ skills:
 main-image: /climate.jpg
 ---
 
-## Deskripsi Lengkap
+Proyek ini dikembangkan sebagai tugas besar untuk mata kuliah Visualisasi Data dan diikutsertakan dalam **Pacific Data Viz Challenge 2025**. Dasbor ini memvisualisasikan tantangan ganda yang dihadapi oleh negara-negara Kepulauan Pasifik: urgensi mitigasi perubahan iklim melalui energi terbarukan dan perlindungan terhadap dampak bencana alam.
 
-Proyek ini dikembangkan sebagai tugas besar untuk mata kuliah Visualisasi Data dan diikutsertakan dalam **Pacific Data Viz Challenge 2025**. 
+Menggunakan data dari **Pacific Data Hub (Blue Pacific 2050)**, dashboard ini berfungsi sebagai alat bantu pengambilan keputusan bagi pembuat kebijakan untuk melihat apakah transisi energi yang dilakukan memiliki korelasi langsung dengan pengurangan dampak bencana.
 
-Dasbor ini memvisualisasikan tantangan ganda yang dihadapi oleh negara-negara Kepulauan Pasifik: urgensi mitigasi perubahan iklim melalui energi terbarukan dan perlindungan terhadap dampak bencana alam. Menggunakan data dari **Pacific Data Hub (Blue Pacific 2050)**, dashboard ini berfungsi sebagai alat bantu pengambilan keputusan bagi pembuat kebijakan.
-
+<div class="summary" style="background: transparent; box-shadow: none; margin: 30px 0 30px 0; padding: 0;">
+    <div class="skills-card">
+        <h2>Keahlian yang Digunakan</h2>
+        <div class="skills-list">
+            {% for skill in page.skills %}
+            <span class="skill">{{ skill }}</span>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 **Tautan Aplikasi:** [**Live Demo Streamlit**](https://visdat-climate.streamlit.app/) | [**Repositori GitHub**](https://github.com/keishahz/DATAVIZ)
 
 ---
