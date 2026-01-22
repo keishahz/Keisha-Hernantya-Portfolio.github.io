@@ -18,7 +18,7 @@ Proyek ini dikembangkan sebagai tugas besar untuk mata kuliah Visualisasi Data d
 Dasbor ini memvisualisasikan tantangan ganda yang dihadapi oleh negara-negara Kepulauan Pasifik: urgensi mitigasi perubahan iklim melalui energi terbarukan dan perlindungan terhadap dampak bencana alam. Menggunakan data dari **Pacific Data Hub (Blue Pacific 2050)**, dashboard ini berfungsi sebagai alat bantu pengambilan keputusan bagi pembuat kebijakan untuk melihat apakah transisi energi yang dilakukan memiliki korelasi langsung dengan pengurangan dampak bencana.
 
 <div style="display:flex; gap:12px; margin:20px 0; flex-wrap:wrap;">
-  <a href="https://visdat-climate.streamlit.app/" target="_blank" style="text-decoration:none; color:#bf2c5e; background-color:#fff0f5; padding:10px 18px; border-radius:8px; font-weight:600; border:1px solid #ffccd9; display:inline-flex; align-items:center;">
+  <a href="https://visdat-climate.streamlit.app/" target="_blank" style="text-decoration:none; color:#333; background-color:#f4f4f4; padding:10px 18px; border-radius:8px; font-weight:600; border:1px solid #ddd; display:inline-flex; align-items:center;">
     🔗 Live Demo Streamlit
   </a>
   <a href="https://github.com/keishahz/DATAVIZ" target="_blank" style="text-decoration:none; color:#333; background-color:#f4f4f4; padding:10px 18px; border-radius:8px; font-weight:600; border:1px solid #ddd; display:inline-flex; align-items:center;">
