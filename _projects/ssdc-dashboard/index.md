@@ -80,13 +80,17 @@ Berikut adalah beberapa visualisasi kunci yang disajikan dalam dashboard ini:
 
 Visualisasi interaktif yang memetakan lokasi pelanggan berdasarkan koordinat latitude/longitude untuk melihat densitas pasar secara *real-time*.
 
-{% include image-gallery.html images="/assets/projects/ssdc-dashboard/map-preview.png" height="400" %}
+<div style="width: 80%; margin: 0 auto; display: block;">
+    {% include image-gallery.html images="map-preview.png" height="300" %}
+</div>
 
 ### b. Analisis Ulasan & Sentimen
 
 Grafik batang yang membandingkan total penjualan dengan rata-rata skor ulasan untuk mengidentifikasi produk yang "Laris tapi Mengecewakan".
 
-{% include image-gallery.html images="/assets/projects/ssdc-dashboard/chart-review.png" height="300" %}
+<div style="width: 80%; margin: 0 auto; display: block;">
+    {% include image-gallery.html images="chart-review.png" height="300" %}
+</div>
 
 ---
 
