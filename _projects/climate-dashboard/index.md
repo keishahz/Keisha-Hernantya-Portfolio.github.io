@@ -67,9 +67,6 @@ Fitur pintar yang secara otomatis menerjemahkan data grafik menjadi narasi teks,
 ---
 
 ## 💻 Sorotan Kode (Code Snippets)
-
-Salah satu tantangan terbesar adalah menjaga dashboard tetap "ngebut" saat mengolah data besar. Solusinya, saya menggunakan fitur **Caching** dari Streamlit.
-
 Berikut adalah implementasi fungsi `load_data` agar data tidak perlu dimuat ulang setiap kali user mengklik tombol:
 
 ```python
