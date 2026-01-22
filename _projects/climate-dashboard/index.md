@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Dashboard Visualisasi Data Iklim
-description: Aplikasi web interaktif untuk menganalisis korelasi antara transisi energi, emisi karbon, dan dampak bencana di Pasifik.
+description: Dashboard interaktif berbasis Streamlit untuk memantau korelasi antara transisi energi terbarukan, emisi CO2, dan dampak bencana di Pasifik.
 skills:
   - Python
   - Streamlit
@@ -11,41 +11,63 @@ skills:
 main-image: /climate.jpg
 ---
 
-Proyek ini dikembangkan sebagai tugas besar untuk mata kuliah Visualisasi Data dan diikutsertakan dalam **Pacific Data Viz Challenge 2025**. Dasbor ini memvisualisasikan tantangan ganda yang dihadapi oleh negara-negara Kepulauan Pasifik: urgensi mitigasi perubahan iklim melalui energi terbarukan dan perlindungan terhadap dampak bencana alam.
+## 🏆 Tentang Proyek
 
-Menggunakan data dari **Pacific Data Hub (Blue Pacific 2050)**, dashboard ini berfungsi sebagai alat bantu pengambilan keputusan bagi pembuat kebijakan untuk melihat apakah transisi energi yang dilakukan memiliki korelasi langsung dengan pengurangan dampak bencana.
+Proyek ini dikembangkan sebagai tugas besar untuk mata kuliah Visualisasi Data dan diikutsertakan dalam **Pacific Data Viz Challenge 2025**. 
 
-<div class="summary" style="background: transparent; box-shadow: none; margin: 30px 0 30px 0; padding: 0;">
-    <div class="skills-card">
-        <h2>Keahlian yang Digunakan</h2>
-        <div class="skills-list">
-            {% for skill in page.skills %}
-            <span class="skill">{{ skill }}</span>
-            {% endfor %}
-        </div>
-    </div>
-</div>
+Dasbor ini memvisualisasikan tantangan ganda yang dihadapi oleh negara-negara Kepulauan Pasifik: urgensi mitigasi perubahan iklim melalui energi terbarukan dan perlindungan terhadap dampak bencana alam. Menggunakan data dari **Pacific Data Hub (Blue Pacific 2050)**, dashboard ini berfungsi sebagai alat bantu pengambilan keputusan bagi pembuat kebijakan.
+
 **Tautan Aplikasi:** [**Live Demo Streamlit**](https://visdat-climate.streamlit.app/) | [**Repositori GitHub**](https://github.com/keishahz/DATAVIZ)
 
 ---
 
-## Fitur Utama
+## 📊 Metodologi & Data
 
-Aplikasi ini dirancang dengan pendekatan *User-Centric* untuk memudahkan eksplorasi data yang kompleks:
+Analisis ini menggunakan dataset **Blue Pacific 2050 (Thematic Area 5)** yang mencakup indikator iklim dan bencana di negara-negara Pasifik.
 
-1.  *Analisis Korelasi Multivariat*: Memvisualisasikan hubungan antara kapasitas energi terbarukan (Watt/kapita), emisi CO₂, dan jumlah populasi terdampak bencana.
-2.  *Filter Data Dinamis*: Pengguna dapat memfilter berdasarkan Negara, Rentang Tahun, dan Indikator spesifik secara *real-time*.
-3.  *Automated Insights*: Sistem secara otomatis menghasilkan narasi teks dan kesimpulan statistik berdasarkan data yang dipilih pengguna.
-4.  *Visualisasi Interaktif*: Menggunakan Plotly untuk grafik yang responsif (Zoom, Pan, Hover details).
+**Tech Stack yang Digunakan:**
+
+* **Streamlit:** Framework utama untuk membangun antarmuka web interaktif yang responsif.
+* **Pandas:** Digunakan untuk *cleaning* dan standardisasi nama negara agar konsisten antar tabel.
+* **Plotly Express:** Digunakan untuk membuat visualisasi interaktif (seperti Scatter Plot dan Line Chart) yang bisa di-*zoom* dan di-*hover*.
 
 ---
 
-## Sorotan Kode (Code Snippets)
+## 💡 Key Insights (Temuan Utama)
 
-Proyek ini dibangun menggunakan **Python** dengan library **Streamlit** untuk antarmuka web dan **Plotly Express** untuk visualisasi data tingkat lanjut. Berikut adalah beberapa bagian kode yang krusial:
+Berdasarkan analisis visual pada dashboard, berikut adalah temuan kuncinya:
 
-### Data Processing & Caching
-Salah satu tantangan utama adalah menangani dataset besar agar dashboard tetap responsif. Saya mengimplementasikan `@st.cache_data` untuk mengoptimalkan waktu muat data.
+### 1. Efektivitas Transisi Energi
+Negara-negara yang konsisten meningkatkan kapasitas energi terbarukan (Watt/kapita) cenderung menunjukkan tren penurunan emisi CO₂ yang positif. Ini membuktikan bahwa investasi hijau mulai membuahkan hasil dalam mitigasi karbon.
+
+### 2. Gap Mitigasi vs Adaptasi
+Meskipun emisi karbon berhasil ditekan, data menunjukkan bahwa **jumlah korban terdampak bencana tidak serta-merta berkurang secara instan**.
+
+* **Masalah:** Bencana alam masih sering terjadi dengan dampak besar.
+* **Akar Masalah:** Mitigasi iklim (pengurangan emisi) bersifat jangka panjang, sedangkan perlindungan bencana butuh infrastruktur fisik (tanggul, peringatan dini) yang bersifat langsung.
+
+---
+## 📸 Fitur Dashboard & Visualisasi
+
+Berikut adalah beberapa visualisasi kunci yang disajikan dalam dashboard ini:
+
+### a. Analisis Korelasi Multivariat
+Memvisualisasikan hubungan timbal balik antara tiga variabel krusial: kapasitas energi terbarukan, emisi CO₂, dan populasi terdampak.
+
+{% include image-gallery.html images="newplot.png" height="400" %}
+
+### b. Automated Insights (Wawasan Otomatis)
+Fitur pintar yang secara otomatis menerjemahkan data grafik menjadi narasi teks, sehingga pengguna awam bisa langsung paham tanpa harus pusing baca grafik.
+
+{% include image-gallery.html images="insight-section.jpg" height="200" %}
+
+---
+
+## 💻 Sorotan Kode (Code Snippets)
+
+Salah satu tantangan terbesar adalah menjaga dashboard tetap "ngebut" saat mengolah data besar. Solusinya, saya menggunakan fitur **Caching** dari Streamlit.
+
+Berikut adalah implementasi fungsi `load_data` agar data tidak perlu dimuat ulang setiap kali user mengklik tombol:
 
 ```python
 # Optimasi performa dengan Caching
