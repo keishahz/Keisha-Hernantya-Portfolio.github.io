@@ -1,26 +1,15 @@
----
-layout: post
-title: Dashboard Visualisasi Data Iklim
-description: Dasbor interaktif berbasis Streamlit yang menampilkan hubungan antara emisi CO2, energi terbarukan, dan bencana di wilayah Pasifik.
-skills:
-  - Python
-  - Streamlit
-  - Data Visualization
-  - GitHub
-main-image: /climate.jpg
----
-
-## Deskripsi Proyek
-
-Dikembangkan sebagai tugas besar kuliah dan diikutsertakan dalam **Pacific Data Viz Challenge 2025**. Dasbor ini memvisualisasikan data iklim untuk memberikan wawasan tentang dampak lingkungan di wilayah Pasifik.
-
-### Fitur Utama
-
-* **Analisis Emisi CO2**: Melacak tren emisi karbon dari waktu ke waktu.
-* **Energi Terbarukan**: Korelasi antara penggunaan energi hijau dan pengurangan emisi.
-* **Data Bencana Alam**: Visualisasi frekuensi dan dampak bencana di wilayah terkait.
-
-### Tautan
-
-* [Demo Aplikasi (Live)](https://visdat-climate.streamlit.app)
-* [Source Code GitHub](https://github.com/keishahz/DATAVIZ)
+# Visualisasi Korelasi dengan Plotly Express
+fig3_scatter = px.scatter(
+    filtered_merged.dropna(subset=['CO2 Emissions (Mt CO2e)']),
+    x='Renewable Capacity (W/capita)',
+    y='CO2 Emissions (Mt CO2e)',
+    color='Country',
+    hover_data=['Year'],
+    title='Renewable Capacity vs CO2 Emissions',
+    labels={
+        'Renewable Capacity (W/capita)': 'Kapasitas Terbarukan (W/kapita)',
+        'CO2 Emissions (Mt CO2e)': 'Emisi CO2 (Mt)'
+    }
+)
+fig3_scatter.update_layout(transition={'duration': 500, 'easing': 'cubic-in-out'})
+st.plotly_chart(fig3_scatter, use_container_width=True)
