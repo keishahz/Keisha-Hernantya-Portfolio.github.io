@@ -11,21 +11,9 @@ layout: wrapper
         <div class="title-header">
             <h1>{{page.title}}</h1>
         </div>
-        
-        </div>
+    </div>
       
     <div class="content">
         {{content}}
-    </div>
-
-    <div class="summary" style="margin-top: 20px; padding-top: 0; box-shadow: none; background: transparent;">
-        <div class="skills-card">
-            <h2>Keahlian yang Digunakan</h2> 
-            <div class="skills-list">
-                {% for skill in page.skills %}
-                <span class="skill">{{ skill }}</span>    
-                {% endfor %}
-            </div>
-        </div>
     </div>
 </div>
