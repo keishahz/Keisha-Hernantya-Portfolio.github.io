@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Dashboard Visualisasi Data Iklim
-description: Dashboard interaktif berbasis Streamlit untuk memantau korelasi antara transisi energi terbarukan, emisi CO2, dan dampak bencana di Pasifik.
+description: Finalis Pacific Data Viz Challenge 2025. Dashboard interaktif untuk menganalisis korelasi antara transisi energi, emisi karbon, dan dampak bencana di Pasifik.
 skills:
   - Python
   - Streamlit
@@ -13,15 +13,29 @@ main-image: /climate.jpg
 
 ## 🏆 Tentang Proyek
 
-Proyek ini dikembangkan sebagai tugas besar untuk mata kuliah Visualisasi Data dan diikutsertakan dalam **Pacific Data Viz Challenge 2025**. Dasbor ini memvisualisasikan tantangan ganda yang dihadapi oleh negara-negara Kepulauan Pasifik: urgensi mitigasi perubahan iklim melalui energi terbarukan dan perlindungan terhadap dampak bencana alam.
+Proyek ini dikembangkan sebagai tugas besar untuk mata kuliah Visualisasi Data dan diikutsertakan dalam **Pacific Data Viz Challenge 2025**. 
 
-Menggunakan data dari **Pacific Data Hub (Blue Pacific 2050)**, dashboard ini berfungsi sebagai alat bantu pengambilan keputusan bagi pembuat kebijakan untuk melihat apakah transisi energi yang dilakukan memiliki korelasi langsung dengan pengurangan dampak bencana.
+Dasbor ini memvisualisasikan tantangan ganda yang dihadapi oleh negara-negara Kepulauan Pasifik: urgensi mitigasi perubahan iklim melalui energi terbarukan dan perlindungan terhadap dampak bencana alam. Menggunakan data dari **Pacific Data Hub (Blue Pacific 2050)**, dashboard ini berfungsi sebagai alat bantu pengambilan keputusan bagi pembuat kebijakan untuk melihat apakah transisi energi yang dilakukan memiliki korelasi langsung dengan pengurangan dampak bencana.
 
-**Tautan Aplikasi:**
+<div style="display:flex; gap:12px; margin:20px 0; flex-wrap:wrap;">
+  <a href="https://visdat-climate.streamlit.app/" target="_blank" style="text-decoration:none; color:#bf2c5e; background-color:#fff0f5; padding:10px 18px; border-radius:8px; font-weight:600; border:1px solid #ffccd9; display:inline-flex; align-items:center;">
+    🔗 Live Demo Streamlit
+  </a>
+  <a href="https://github.com/keishahz/DATAVIZ" target="_blank" style="text-decoration:none; color:#333; background-color:#f4f4f4; padding:10px 18px; border-radius:8px; font-weight:600; border:1px solid #ddd; display:inline-flex; align-items:center;">
+    📂 Repositori GitHub
+  </a>
+</div>
 
-- 🔗 [Live Demo Streamlit](https://visdat-climate.streamlit.app/)
-- 🗂️ [Repositori GitHub](https://github.com/keishahz/DATAVIZ)
-
+<div class="summary" style="background: transparent; box-shadow: none; margin: 30px 0 30px 0; padding: 0;">
+    <div class="skills-card">
+        <h2>Keahlian yang Digunakan</h2>
+        <div class="skills-list">
+            {% for skill in page.skills %}
+            <span class="skill">{{ skill }}</span>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 ---
 
 ## 📊 Metodologi & Data
@@ -50,6 +64,7 @@ Meskipun emisi karbon berhasil ditekan, data menunjukkan bahwa **jumlah korban t
 * **Akar Masalah:** Mitigasi iklim (pengurangan emisi) bersifat jangka panjang, sedangkan perlindungan bencana butuh infrastruktur fisik (tanggul, peringatan dini) yang bersifat langsung.
 
 ---
+
 ## 📸 Fitur Dashboard & Visualisasi
 
 Berikut adalah beberapa visualisasi kunci yang disajikan dalam dashboard ini:
@@ -67,12 +82,15 @@ Fitur pintar yang secara otomatis menerjemahkan data grafik menjadi narasi teks,
 <div style="width: 80%; margin: 0 auto; display: block;">
     {% include image-gallery.html images="conclusion.png" height="300" %}
 </div>
+
 ---
 
-## 💻 Sorotan Kode (Code Snippets)
+## 💻 Sorotan Kode
+
 Berikut adalah implementasi fungsi `load_data` agar data tidak perlu dimuat ulang setiap kali user mengklik tombol:
 
-```python
+```
+# Optimasi performa dengan Caching
 @st.cache_data
 def load_data():
     file_path = 'Blue Pacific 2050_ Climate Change And Disasters.csv'
@@ -90,3 +108,4 @@ def load_data():
     df['Year'] = df['Year'].astype(int)
     
     return df
+```
