@@ -54,13 +54,16 @@ Berikut adalah beberapa visualisasi kunci yang disajikan dalam dashboard ini:
 ### a. Analisis Korelasi Multivariat
 Memvisualisasikan hubungan timbal balik antara tiga variabel krusial: kapasitas energi terbarukan, emisi CO₂, dan populasi terdampak.
 
-{% include image-gallery.html images="newplot.png" height="400" %}
+<div style="width: 80%; margin: 0 auto; display: block;">
+    {% include image-gallery.html images="newplot.png" height="300" %}
+</div>
 
 ### b. Automated Insights (Wawasan Otomatis)
 Fitur pintar yang secara otomatis menerjemahkan data grafik menjadi narasi teks, sehingga pengguna awam bisa langsung paham tanpa harus pusing baca grafik.
 
-{% include image-gallery.html images="conclusion.png" height="400" %}
-
+<div style="width: 80%; margin: 0 auto; display: block;">
+    {% include image-gallery.html images="conclusion.png" height="300" %}
+</div>
 ---
 
 ## 💻 Sorotan Kode (Code Snippets)
@@ -70,7 +73,6 @@ Salah satu tantangan terbesar adalah menjaga dashboard tetap "ngebut" saat mengo
 Berikut adalah implementasi fungsi `load_data` agar data tidak perlu dimuat ulang setiap kali user mengklik tombol:
 
 ```python
-# Optimasi performa dengan Caching
 @st.cache_data
 def load_data():
     file_path = 'Blue Pacific 2050_ Climate Change And Disasters.csv'
