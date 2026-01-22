@@ -33,18 +33,18 @@ Menggunakan data dari **Pacific Data Hub (Blue Pacific 2050)**, dashboard ini be
 
 Aplikasi ini dirancang dengan pendekatan *User-Centric* untuk memudahkan eksplorasi data yang kompleks:
 
-1.  **Analisis Korelasi Multivariat**: Memvisualisasikan hubungan antara kapasitas energi terbarukan (Watt/kapita), emisi CO₂, dan jumlah populasi terdampak bencana.
-2.  **Filter Data Dinamis**: Pengguna dapat memfilter berdasarkan Negara, Rentang Tahun, dan Indikator spesifik secara *real-time*.
-3.  **Automated Insights**: Sistem secara otomatis menghasilkan narasi teks dan kesimpulan statistik berdasarkan data yang dipilih pengguna.
-4.  **Visualisasi Interaktif**: Menggunakan Plotly untuk grafik yang responsif (Zoom, Pan, Hover details).
+1.  *Analisis Korelasi Multivariat*: Memvisualisasikan hubungan antara kapasitas energi terbarukan (Watt/kapita), emisi CO₂, dan jumlah populasi terdampak bencana.
+2.  *Filter Data Dinamis*: Pengguna dapat memfilter berdasarkan Negara, Rentang Tahun, dan Indikator spesifik secara *real-time*.
+3.  *Automated Insights*: Sistem secara otomatis menghasilkan narasi teks dan kesimpulan statistik berdasarkan data yang dipilih pengguna.
+4.  *Visualisasi Interaktif*: Menggunakan Plotly untuk grafik yang responsif (Zoom, Pan, Hover details).
 
 ---
 
-## Implementasi Teknis
+## Sorotan Kode (Code Snippets)
 
-Proyek ini dibangun menggunakan **Python** dengan library **Streamlit** untuk antarmuka web dan **Plotly Express** untuk visualisasi data tingkat lanjut.
+Proyek ini dibangun menggunakan **Python** dengan library **Streamlit** untuk antarmuka web dan **Plotly Express** untuk visualisasi data tingkat lanjut. Berikut adalah beberapa bagian kode yang krusial:
 
-### 1. Data Processing & Caching
+### Data Processing & Caching
 Salah satu tantangan utama adalah menangani dataset besar agar dashboard tetap responsif. Saya mengimplementasikan `@st.cache_data` untuk mengoptimalkan waktu muat data.
 
 ```python
